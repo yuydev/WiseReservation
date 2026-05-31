@@ -61,7 +61,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/orders/available`,
       method: 'GET',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       data: {
         filter: this.data.currentFilter,
         page: this.data.page,
@@ -110,7 +110,7 @@ Page({
           wx.request({
             url: `${app.globalData.baseUrl}/api/orders/${id}/grab`,
             method: 'POST',
-            header: { 'Authorization': `****** },
+            header: { 'Authorization': 'Bearer ' + token },
             success: (response) => {
               if (response.data.code === 0) {
                 wx.showToast({ title: '抢单成功', icon: 'success' })

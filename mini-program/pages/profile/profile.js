@@ -43,7 +43,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/user/profile`,
       method: 'GET',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       success: (res) => {
         if (res.data.code === 0) {
           this.setData({ userInfo: res.data.data })
@@ -58,7 +58,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/user/stats`,
       method: 'GET',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       success: (res) => {
         if (res.data.code === 0) {
           this.setData({ stats: res.data.data })

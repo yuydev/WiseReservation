@@ -65,7 +65,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/reservations`,
       method: 'GET',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       data: {
         status: this.data.currentStatus === 'all' ? '' : this.data.currentStatus,
         keyword: this.data.searchKey,
@@ -149,7 +149,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/reservations/${id}/status`,
       method: 'PUT',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       data: { status },
       success: (res) => {
         if (res.data.code === 0) {

@@ -12,7 +12,7 @@ const request = (options) => {
       data: options.data || {},
       header: {
         'Content-Type': 'application/json',
-        'Authorization': token ? `****** : '',
+        'Authorization': token ? 'Bearer ' + token : '',
         ...options.header
       },
       success: (res) => {

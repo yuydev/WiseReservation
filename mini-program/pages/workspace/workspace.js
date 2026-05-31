@@ -52,7 +52,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/api/dashboard/overview`,
       method: 'GET',
-      header: { 'Authorization': `****** },
+      header: { 'Authorization': 'Bearer ' + token },
       success: (res) => {
         if (res.data.code === 0) {
           const data = res.data.data

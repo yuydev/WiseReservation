@@ -1,0 +1,78 @@
+<view class="reservations-page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索预约单号/供应商" bindinput="onSearch" value="{{searchKey}}" />
+    </view>
+  </view>
+
+  <!-- 状态筛选标签 -->
+  <view class="status-tabs">
+    <view 
+      class="status-tab {{currentStatus === item.value ? 'active' : ''}}"
+      wx:for="{{statusList}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="switchStatus">
+      <text>{{item.label}}</text>
+      <view class="tab-badge" wx:if="{{item.count > 0}}">{{item.count}}</view>
+    </view>
+  </view>
+
+  <!-- 预约单列表 -->
+  <scroll-view 
+    class="reservation-list" 
+    scroll-y 
+    bindscrolltolower="loadMore"
+    refresher-enabled
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{isRefreshing}}">
+    
+    <view class="reservation-item card" wx:for="{{reservations}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="reservation-header">
+        <text class="reservation-no">{{item.orderNo}}</text>
+        <text class="reservation-status status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view class="reservation-body">
+        <view class="info-row">
+          <text class="info-label">供应商</text>
+          <text class="info-value">{{item.supplierName}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">物料</text>
+          <text class="info-value">{{item.materialName}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">预约时间</text>
+          <text class="info-value">{{item.appointmentTime}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">车牌号</text>
+          <text class="info-value">{{item.plateNumber}}</text>
+        </view>
+      </view>
+      <view class="reservation-footer">
+        <text class="create-time">创建时间: {{item.createTime}}</text>
+        <view class="action-btns">
+          <button class="btn-cancel" wx:if="{{item.status === 'pending'}}" catchtap="cancelReservation" data-id="{{item.id}}">取消</button>
+          <button class="btn-approve" wx:if="{{item.status === 'pending'}}" catchtap="approveReservation" data-id="{{item.id}}">审批</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{reservations.length === 0 && !loading}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无预约单</text>
+    </view>
+
+    <view class="loading-more" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+  </scroll-view>
+
+  <!-- 新建预约按钮 -->
+  <view class="fab-btn" bindtap="createReservation">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

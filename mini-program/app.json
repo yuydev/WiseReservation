@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/workspace/workspace",
+    "pages/reservations/reservations",
+    "pages/orderHall/orderHall",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "智慧预约",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/workspace/workspace",
+        "text": "工作台",
+        "iconPath": "static/images/workspace.png",
+        "selectedIconPath": "static/images/workspace-active.png"
+      },
+      {
+        "pagePath": "pages/reservations/reservations",
+        "text": "预约单",
+        "iconPath": "static/images/reservation.png",
+        "selectedIconPath": "static/images/reservation-active.png"
+      },
+      {
+        "pagePath": "pages/orderHall/orderHall",
+        "text": "抢单大厅",
+        "iconPath": "static/images/order.png",
+        "selectedIconPath": "static/images/order-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "static/images/profile.png",
+        "selectedIconPath": "static/images/profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

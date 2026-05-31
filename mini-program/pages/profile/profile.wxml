@@ -1,0 +1,66 @@
+<view class="profile-page">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-avatar">
+      <image class="avatar-img" src="{{userInfo.avatarUrl || '/static/images/default-avatar.png'}}" mode="aspectFill" />
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userInfo.name || '未登录'}}</text>
+      <text class="user-role">{{userInfo.roleName || '请先登录'}}</text>
+      <text class="user-company">{{userInfo.company || ''}}</text>
+    </view>
+    <view class="user-arrow">
+      <text>›</text>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-row card">
+    <view class="stat-item">
+      <text class="stat-value">{{stats.totalOrders}}</text>
+      <text class="stat-label">总订单</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.completedOrders}}</text>
+      <text class="stat-label">已完成</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.rating}}</text>
+      <text class="stat-label">评分</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.thisMonth}}</text>
+      <text class="stat-label">本月单量</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section card">
+    <view class="menu-item" wx:for="{{menuList}}" wx:key="id" bindtap="goPage" data-url="{{item.url}}">
+      <view class="menu-icon">
+        <text>{{item.icon}}</text>
+      </view>
+      <text class="menu-text">{{item.name}}</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 系统设置 -->
+  <view class="menu-section card">
+    <view class="menu-item" wx:for="{{settingList}}" wx:key="id" bindtap="goPage" data-url="{{item.url}}">
+      <view class="menu-icon">
+        <text>{{item.icon}}</text>
+      </view>
+      <text class="menu-text">{{item.name}}</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn" bindtap="logout">
+    <text>退出登录</text>
+  </view>
+</view>

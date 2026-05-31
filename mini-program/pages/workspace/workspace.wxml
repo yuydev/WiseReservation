@@ -1,0 +1,93 @@
+<view class="workspace-page">
+  <!-- 角色切换标签 -->
+  <view class="role-tabs">
+    <view class="role-tab-list">
+      <view 
+        class="role-tab {{currentRole === item ? 'active' : ''}}" 
+        wx:for="{{roles}}" 
+        wx:key="*this"
+        data-role="{{item}}"
+        bindtap="switchRole">
+        {{item}}
+      </view>
+    </view>
+    <view class="notification-icon" bindtap="goNotifications">
+      <text class="iconfont icon-bell">🔔</text>
+      <view class="badge" wx:if="{{unreadCount > 0}}">{{unreadCount}}</view>
+    </view>
+  </view>
+
+  <!-- 今日数据概览 -->
+  <view class="stats-card">
+    <view class="stats-left">
+      <text class="stats-label">今日吞吐量</text>
+      <view class="stats-value-row">
+        <text class="stats-value">{{todayThroughput}}</text>
+        <text class="stats-icon">📊</text>
+      </view>
+      <text class="stats-unit">吨 / 实时</text>
+    </view>
+    <view class="stats-right">
+      <text class="stats-label">作业车辆</text>
+      <view class="stats-value-row">
+        <text class="stats-value">{{activeVehicles}}</text>
+        <text class="stats-total">/ {{totalVehicles}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心能力 -->
+  <view class="capabilities-card card">
+    <view class="capabilities-header">
+      <view class="capabilities-title">
+        <view class="title-indicator"></view>
+        <text>核心能力</text>
+      </view>
+      <text class="capabilities-count text-green">{{capabilities.length}} 项服务</text>
+    </view>
+    <view class="capabilities-grid">
+      <view 
+        class="capability-item" 
+        wx:for="{{capabilities}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="goCapability">
+        <view class="capability-icon" style="background-color: {{item.bgColor}}">
+          <text>{{item.icon}}</text>
+        </view>
+        <text class="capability-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 待办预警 -->
+  <view class="alerts-section">
+    <view class="alerts-header">
+      <view class="alerts-title">
+        <text class="alerts-icon">⚡</text>
+        <text class="alerts-text">待办预警</text>
+      </view>
+      <text class="more-link text-green" bindtap="goAlerts">MORE</text>
+    </view>
+    <view class="alert-list">
+      <view 
+        class="alert-item card" 
+        wx:for="{{alerts}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="goAlertDetail">
+        <view class="alert-icon-wrap">
+          <text class="alert-type-icon">{{item.icon}}</text>
+        </view>
+        <view class="alert-content">
+          <text class="alert-title">{{item.title}}</text>
+          <text class="alert-desc">{{item.description}}</text>
+        </view>
+        <view class="alert-meta">
+          <text class="alert-time">{{item.time}}</text>
+          <text class="alert-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

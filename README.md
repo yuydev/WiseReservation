@@ -6,8 +6,8 @@
 
 - **项目名称**：智慧物流云台
 - **平台**：微信小程序
-- **后端 API 基础地址**：`https://localhost:7153`
-- **认证方式**：`Authorization: GnBearer {token}`
+- **后端 API 基础地址（开发环境）**：`https://localhost:7153`
+- **认证方式**：`Authorization: GnBearer {token}`（后端已定义为自定义前缀，非标准 `Bearer`）
 
 ## 1. 认证与用户管理
 
@@ -139,6 +139,8 @@ public enum UserRole
     安保 = 51
 }
 ```
+
+> 说明：角色数值来自现有后端/存量系统约定，前后端均按该映射进行传输与解析，不按顺序枚举分配。
 
 ### 订单状态
 
